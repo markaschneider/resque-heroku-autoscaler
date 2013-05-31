@@ -68,7 +68,7 @@ module Resque
       end
 
       def time_to_scale?
-        (Time.now - Time.parse(Resque.redis.get('last_scaled'))) >=  config.wait_time
+        (Time.now - Time.parse(Resque.redis.get('last_scaled') || "1900-01-01")) >=  config.wait_time
       end
 
       def log(message)
